@@ -8,24 +8,20 @@ module.exports = function check(str, bracketsConfig) {
 		let depth = getArrayDepth(bracketsConfig);
 		let brackets = bracketsConfig.flat(depth).join('');
 		  let stack = []; 
-		  for(let bracket of str) {
-		    let bracketsIndex = brackets.indexOf(bracket)
-		    //console.log("bracket ", bracket, " bracketsIndex ", bracketsIndex )
-		    if(bracketsIndex % 2 === 0 && !(bracket == '|')) {
-		      stack.push(bracketsIndex + 1)
+		  for(let currentItem of str) {
+		    let currentIndex = brackets.indexOf(bracket)
+		    if(currentIndex % 2 === 0 && !(currentItem == '|')) {
+		      stack.push(currentIndex + 1)
 		    } 
-		    else if(bracket === '|' && (stack.indexOf(bracketsIndex) == -1) ) {
-		    	stack.push(bracketsIndex)
+		    else if(currentItem === '|' && (stack.indexOf(currentIndex) == -1) ) {
+		    	stack.push(currentIndex)
 
 		    }	
 		    else {
-		      if(stack.pop() !== bracketsIndex) {
-		      	//console.log(false)
+		      if(stack.pop() !== currentIndex) {
 		        return false;
 		      }
 		    }
-		    //console.log(stack);
 		  }
-		  //console.log(stack.length === 0);
 		  return stack.length === 0
 }
