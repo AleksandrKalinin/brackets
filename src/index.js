@@ -9,7 +9,7 @@ module.exports = function check(str, bracketsConfig) {
 		let brackets = bracketsConfig.flat(depth).join('');
 		  let stack = []; 
 		  for(let currentItem of str) {
-		    let currentIndex = brackets.indexOf(bracket)
+		    let currentIndex = brackets.indexOf(currentItem)
 		    if(currentIndex % 2 === 0 && !(currentItem == '|')) {
 		      stack.push(currentIndex + 1)
 		    } 
